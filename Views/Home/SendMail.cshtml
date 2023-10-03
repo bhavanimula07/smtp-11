@@ -1,0 +1,81 @@
+﻿@model smtp_1.Models.Email
+
+@{
+    Layout=null;
+}
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+        <style type="text/css">
+body{
+font-family:Arial;
+font-size:10pt;
+}
+table th,table td{
+padding:5 px;
+}
+</style>
+    </head>
+    <body>
+        <div>
+            <h2>Send Email using SMTP</h2>
+            @using(Html.BeginForm("SendMail","Home",FormMethod.Post,new {enctype="multipart/form-data"}))
+            {
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="width:80px">
+                        To :
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model=>model.To)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Subject :
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model=>model.Subject)
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        Body :
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(model=>model.Body, new {rows="3", cols="28"})
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email :
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model=>model.Emails)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password :
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model=>model.Password,new{type="password"})
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       
+                    </td>
+                    <td>
+                        <input type="submit" value="Send">
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <span style="color:green">@ViewBag.Message</span>
+        }
+        </div>
+    </body>
+</html>
